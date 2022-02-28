@@ -8,6 +8,23 @@ const init = async () => {
     host: 'localhost'
   })
 
+  server.route([
+    {
+      method: 'GET',
+      path: '/contacts',
+      handler: () => {
+        return [
+          {
+            id: 1,
+            name: 'John Doe',
+            email: 'john@example.com',
+            phone: '1234567890'
+          }
+        ]
+      }
+    }
+  ])
+
   await server.start()
   console.log('Server running on %s', server.info.uri)
 }
