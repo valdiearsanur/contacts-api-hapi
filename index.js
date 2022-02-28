@@ -2,6 +2,8 @@
 
 const Hapi = require('@hapi/hapi')
 
+const contacts = require('./contacts')
+
 const init = async () => {
   const server = Hapi.server({
     port: 3000,
@@ -12,16 +14,7 @@ const init = async () => {
     {
       method: 'GET',
       path: '/contacts',
-      handler: () => {
-        return [
-          {
-            id: 1,
-            name: 'John Doe',
-            email: 'john@example.com',
-            phone: '1234567890'
-          }
-        ]
-      }
+      handler: () => contacts
     }
   ])
 
