@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx standard"
+    "test": "npx standard",
+    "start": "node index.js",
+    "start:dev": "nodemon server.js"
   },
   "author": "Muhammad Valdie Arsanur",
   "license": "ISC",
@@ -12,6 +14,7 @@
     "@hapi/hapi": "^20.2.1"
   },
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "standard": "^16.0.4"
   }
 }
