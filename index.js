@@ -52,6 +52,24 @@ const init = async () => {
         response.code(201)
         return response
       }
+    },
+    {
+      method: 'DELETE',
+      path: '/contacts/{id}',
+      handler: (request, handler) => {
+        const { id } = request.params
+        const index = contacts.findIndex(contact => contact.id === Number(id))
+
+        if (index === -1) {
+          const response = handler.response({ message: 'Contact not found' })
+          response.code(404)
+          return response
+        }
+
+        contacts.splice(index, 1)
+
+        return { message: 'Contact deleted successfully' }
+      }
     }
   ])
 
