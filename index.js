@@ -33,6 +33,25 @@ const init = async () => {
 
         return contact
       }
+    },
+    {
+      method: 'POST',
+      path: '/contacts',
+      handler: (request, handler) => {
+        const { name, email, phone } = request.payload
+        const id = contacts[contacts.length - 1].id + 1
+
+        contacts.push({
+          id,
+          name,
+          email,
+          phone
+        })
+
+        const response = handler.response({ message: 'Contact added successfully' })
+        response.code(201)
+        return response
+      }
     }
   ])
 
