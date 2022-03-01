@@ -13,6 +13,8 @@ If this is your fist development. We encourage you to use NVM by following the s
 |No| Name | Version | Description |
 |--|--|--|--|
 |1.| [**Hapi.js**](https://hapi.dev/) | `20.2.1` | Primary Back End framework. |
+|2.| [**standard**](https://github.com/standard/standard/) | `16.0.4` | Dev-only standalone package. JavaScript style guide, linter, and formatter. |
+|3.| [**nodemon**](https://github.com/remy/nodemon) | `2.0.15` | Dev-only standalone package. For enabling hot-reloading in local development. |
 
 
 ## Development Guideline
