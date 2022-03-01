@@ -15,6 +15,24 @@ const init = async () => {
       method: 'GET',
       path: '/contacts',
       handler: () => contacts
+    },
+    {
+      method: 'GET',
+      path: '/contacts/{id}',
+      handler: (request, handler) => {
+        const { id } = request.params
+        const index = contacts.findIndex(contact => contact.id === Number(id))
+
+        if (index === -1) {
+          const response = handler.response({ message: 'Contact not found' })
+          response.code(404)
+          return response
+        }
+
+        const contact = contacts[index]
+
+        return contact
+      }
     }
   ])
 
