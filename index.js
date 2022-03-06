@@ -4,10 +4,13 @@ const Hapi = require('@hapi/hapi')
 
 const contacts = require('./contacts')
 
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || 'localhost';
+
 const init = async () => {
   const server = Hapi.server({
-    port: 3000,
-    host: 'localhost'
+    port: PORT,
+    host: HOST
   })
 
   server.route([
