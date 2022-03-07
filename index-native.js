@@ -36,6 +36,23 @@ const init = async () => {
       })
     }
 
+    // DELETE /contacts/{id}
+    else if (url.startsWith('/contacts/') && method === 'DELETE') {
+      const id = request.url.split('/')[2]
+      const user = contacts.find(user => user.id === parseInt(id))
+
+      if (user) {
+        const index = contacts.indexOf(user)
+        contacts.splice(index, 1)
+
+        response.statusCode = 200
+        return response.end(JSON.stringify({ message: 'Contact deleted successfully' }))
+      }
+
+      response.statusCode = 404
+      return response.end(JSON.stringify({ message: 'Contact not found' }))
+    }
+
     // default handler
     else {
       response.statusCode = 404
