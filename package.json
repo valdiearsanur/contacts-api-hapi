@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start-native": "node index-native.js",
     "test": "npx standard"
   },
   "author": "Muhammad Valdie Arsanur",
