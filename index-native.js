@@ -19,8 +19,10 @@ const init = async () => {
     }
 
     // default handler
-    response.statusCode = 404
-    return response.end(JSON.stringify({ message: 'URL not found' }))
+    else {
+      response.statusCode = 404
+      return response.end(JSON.stringify({ message: 'URL not found' }))
+    }
   })
 
   server.listen(PORT, HOST, () => {
