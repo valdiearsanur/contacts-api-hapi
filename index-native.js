@@ -2,6 +2,8 @@
 
 const http = require('http')
 
+const contacts = require('./contacts')
+
 const PORT = 3000
 const HOST = 'localhost'
 
@@ -13,14 +15,6 @@ const init = async () => {
 
     // GET /contacts
     if (url === '/contacts' && method === 'GET') {
-      let contacts = [
-        {
-          id: 1,
-          name: 'John Doe',
-          email: 'john@example.com',
-          phone: '1234567890'
-        }
-      ]
       return response.end(JSON.stringify(contacts))
     }
 
