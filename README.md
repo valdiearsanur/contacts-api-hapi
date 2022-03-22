@@ -26,6 +26,36 @@ If this is your fist development. We encourage you to use NVM by following the s
 1. Run the application `npm run start`
 
 
+## Development (Container-based) Guideline
+
+1. Please follow development guideline beforely.
+
+1. Build the custom image using Docker.
+
+    ```
+    docker build . -t contact-api-node16
+    ```
+
+    The success indicator could be check on the command output as shown below : 
+    ```
+    ...
+    ---> {HASH_NUMBER}
+    Successfully built {HASH_NUMBER}
+    Successfully tagged contact-api-node16:latest
+    ```
+
+1. Lastly, run the built image using `docker run`. The argument `-p` itself have this format `<local-port>:<container-port>`. Local port means your machine port should be exposed to client (browser). And  container port means that port that should be exposed to your Local.
+
+    ```
+    docker run -p 3000:3000 contact-api-node16
+    ```
+
+1. [Optional] Running previous command require you to keep the Shell active. You can run the container in a `daemon mode`, means you keep your container run in a backround without worying your Shell is inactive. Just add argument `-d` to perform this mode.
+
+    ```
+    docker run -d -p 3000:3000 contact-api-node16
+    ```
+
 ## Deployment (Production) Guideline
 ---
 
