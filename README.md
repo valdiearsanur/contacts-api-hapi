@@ -133,4 +133,26 @@ Note that in the real cloud VM, it requires you to allow incoming request for po
 
 1. Simply use button below to deploy using cloud run.
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+    [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+
+    below is the output : 
+
+    ![Cloud run output](./others/sc/cloud-run-button-output.png "Cloud Run output")
+
+1. Or you can manually deploy with command below : 
+
+    1. You must have Google Cloud SDK to perform `gcloud` command in your local.
+
+    1. Build and submit the custom image to Google Cloud Build. The image will be available on this URL `gcr.io/[PROJECT-ID]/contacts-api-hapi`
+    ```
+    gcloud builds submit --tag gcr.io/[PROJECT-ID]/contacts-api-hapi
+    ```
+
+    1. Deploy previously built image to Google Cloud Run.
+    ```
+    gcloud run deploy contacts-api-hapi\
+        --project=[PROJECT-ID]\
+        --platform=managed\
+        --region=us-central1\
+        --image=gcr.io/[PROJECT-ID]/contacts-api-hapi
+    ```
