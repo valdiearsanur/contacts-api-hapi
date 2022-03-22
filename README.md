@@ -127,3 +127,10 @@ Note that in the real cloud VM, it requires you to allow incoming request for po
     ```
     HOST=localhost PORT=3000 pm2 start index.js --name contact
     ```
+
+
+## Deployment Google Cloud Run (Container-based)
+
+1. Simply use button below to deploy using cloud run.
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
