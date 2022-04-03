@@ -11,7 +11,8 @@
   "author": "Muhammad Valdie Arsanur",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^20.2.1"
+    "@hapi/hapi": "^20.2.1",
+    "firebase-admin": "^10.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",

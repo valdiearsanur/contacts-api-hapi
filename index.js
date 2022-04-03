@@ -2,10 +2,10 @@
 
 const Hapi = require('@hapi/hapi')
 
-const contacts = require('./contacts')
+const { getAllContact, getContact, addContact, deleteContact } = require('./contacts')
 
-const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 3000
+const HOST = process.env.HOST || 'localhost'
 
 const init = async () => {
   const server = Hapi.server({
@@ -17,24 +17,22 @@ const init = async () => {
     {
       method: 'GET',
       path: '/contacts',
-      handler: () => contacts
+      handler: (request, handler) => {
+        return getAllContact()
+      }
     },
     {
       method: 'GET',
       path: '/contacts/{id}',
       handler: (request, handler) => {
         const { id } = request.params
-        const index = contacts.findIndex(contact => contact.id === Number(id))
-
-        if (index === -1) {
-          const response = handler.response({ message: 'Contact not found' })
+        let response = {}
+        response = getContact(id)
+        if (response === null) {
+          response = handler.response({ message: 'Contact not found' })
           response.code(404)
-          return response
         }
-
-        const contact = contacts[index]
-
-        return contact
+        return response
       }
     },
     {
@@ -42,15 +40,11 @@ const init = async () => {
       path: '/contacts',
       handler: (request, handler) => {
         const { name, email, phone } = request.payload
-        const id = contacts[contacts.length - 1].id + 1
-
-        contacts.push({
-          id,
+        addContact({
           name,
           email,
           phone
         })
-
         const response = handler.response({ message: 'Contact added successfully' })
         response.code(201)
         return response
@@ -61,16 +55,7 @@ const init = async () => {
       path: '/contacts/{id}',
       handler: (request, handler) => {
         const { id } = request.params
-        const index = contacts.findIndex(contact => contact.id === Number(id))
-
-        if (index === -1) {
-          const response = handler.response({ message: 'Contact not found' })
-          response.code(404)
-          return response
-        }
-
-        contacts.splice(index, 1)
-
+        deleteContact(id)
         return { message: 'Contact deleted successfully' }
       }
     }
