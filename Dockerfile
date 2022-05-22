@@ -16,4 +16,4 @@ ENV HOST=0.0.0.0
 ENV PORT=3000
 
 # Start the api server
-CMD [ "node", "index.js" ]
+CMD [ "index.js" ]
