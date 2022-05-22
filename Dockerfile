@@ -1,13 +1,12 @@
-# Pull in the official lightweight version of Node 16.
-FROM node:latest
+# Pull base image, using minimal image to speed up deployment
+FROM gcr.io/distroless/nodejs
 
 # Create and change to the app directory.
 WORKDIR /app
 
-COPY package.json .
+COPY package.json ./
 
-# Install production dependencies.
-RUN npm install
+COPY node_modules ./node_modules
 
 # Copy local codebase into the container image
 COPY . .
@@ -17,4 +16,4 @@ ENV HOST=0.0.0.0
 ENV PORT=3000
 
 # Start the api server
-CMD [ "npm", "run", "start" ]
+CMD [ "node", "index.js" ]
