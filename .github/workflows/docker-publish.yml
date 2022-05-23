@@ -1,10 +1,6 @@
 name: Docker Image CI
 
-on:
-  push:
-    branches: none
-  pull_request:
-    branches: none
+on: workflow_dispatch
 
 env:
 
@@ -22,6 +18,10 @@ jobs:
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
+      ref: container-based
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
     - name: Log into Registry
       uses: docker/login-action@v1
@@ -31,7 +31,9 @@ jobs:
         password: ${{ env.SERVICE_ACCOUNT_KEY }}
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v3
       with:
+        push: true
         registry: ${{ env.REGISTRY }}
         tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+        file: Dockerfile.min
