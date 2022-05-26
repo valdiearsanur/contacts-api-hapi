@@ -5,7 +5,7 @@ on: workflow_dispatch
 env:
 
   REGISTRY: https://gcr.io
-  IMAGE_NAME: ${{ env.GCP_PROJECT_ID }}/node-contact-api
+  IMAGE_NAME: ${{ secret.GCP_PROJECT_ID }}/node-contact-api
   IMAGE_TAG: ${{ github.run_number }}
 
 
@@ -28,7 +28,7 @@ jobs:
       with:
         registry: ${{ env.REGISTRY }}
         username: _json_key
-        password: ${{ env.SERVICE_ACCOUNT_KEY }}
+        password: ${{ secret.SERVICE_ACCOUNT_KEY }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
