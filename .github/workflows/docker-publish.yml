@@ -35,5 +35,5 @@ jobs:
       with:
         push: true
         registry: ${{ env.REGISTRY }}
-        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+        tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
         file: Dockerfile.min
