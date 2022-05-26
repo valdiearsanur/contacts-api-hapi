@@ -5,7 +5,7 @@ on: workflow_dispatch
 env:
 
   REGISTRY: https://gcr.io
-  IMAGE_NAME: ${{ GCP_PROJECT_ID }}/node-contact-api
+  IMAGE_NAME: ${{ env.GCP_PROJECT_ID }}/node-contact-api
   IMAGE_TAG: ${{ github.run_number }}
 
 
