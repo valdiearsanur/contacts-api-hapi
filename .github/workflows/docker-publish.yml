@@ -24,7 +24,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+    - uses: 'google-github-actions/setup-gcloud@v0'
       with:
         service_account_key: ${{ secrets.GCR_JSON_KEY }}
         project_id: ${{ secrets.GCP_PROJECT_ID }}
