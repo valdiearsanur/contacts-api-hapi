@@ -37,7 +37,7 @@ jobs:
     - name: Build Docker image
       run: |-
         npm install --prefix ./node_modules
-        docker build -f MyDockerfile -t $IMAGE_NAME:latest .
+        docker build -f Dockerfile.min -t $IMAGE_NAME:latest .
 
     - name: Push Docker Image to Google Container Registry (GCR)
       run: |-
