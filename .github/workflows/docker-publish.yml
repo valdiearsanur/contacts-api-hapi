@@ -24,14 +24,15 @@ jobs:
       uses: google-github-actions/setup-gcloud@v0
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_email: ${{ secrets.GCP_EMAIL }}
         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
     - name: Configure Docker
       run: gcloud auth configure-docker --quiet
 
     - name: Build Docker image
-      run: docker build . -t $IMAGE_NAME:$IMAGE_TAG
+      run: docker build . -t $IMAGE_NAME:latest
 
     - name: Push Docker Image to Google Container Registry (GCR)
-      run: docker push gcr.io/$IMAGE_NAME:$IMAGE_TAG
+      run: |-
+        docker tag $IMAGE_NAME:latest gcr.io/$IMAGE_NAME:$IMAGE_TAG
+        docker push gcr.io/$IMAGE_NAME:$IMAGE_TAG
