@@ -29,8 +29,15 @@ jobs:
     - name: Configure Docker
       run: gcloud auth configure-docker --quiet
 
+    - name: Configure node
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
     - name: Build Docker image
-      run: docker build . -t $IMAGE_NAME:latest
+      run: |-
+        npm install --prefix ./node_modules
+        docker build Dockerfile.min -t $IMAGE_NAME:latest
 
     - name: Push Docker Image to Google Container Registry (GCR)
       run: |-
